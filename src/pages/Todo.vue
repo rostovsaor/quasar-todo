@@ -1,16 +1,62 @@
 <template>
-  <q-page>
+  <q-page class="bg-grey-3 column">
     <!-- <img
       alt="Quasar logo"
       src="~assets/quasar-logo-vertical.svg"
       style="width: 200px; height: 200px"
     > -->
-    <h5>Todo</h5>
+    <!-- <h5>Todo</h5> -->
+ <q-list
+    class="bg-white"
+    separator
+    bordered
+  >
+      <!--
+        Rendering a <label> tag (notice tag="label")
+        so QCheckboxes will respond to clicks on QItems to
+        change Toggle state.
+      -->
+
+      <q-item
+        v-for="task in tasks"
+        :key="task.title"
+        v-ripple
+      >
+        <q-item-section avatar>
+          <q-checkbox
+            v-model="task.done"
+            color="primary"
+          />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ task.title }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </q-list>
+
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'Tofo'
+  name: 'Todo',
+  data() {
+    return {
+      tasks:[
+        {
+          title: 'Get bananas',
+          done: false
+        },
+        {
+          title: 'Eat bananas',
+          done: true
+        },
+        {
+          title: 'Poo bananas',
+          done: false
+        },
+      ]
+    }
+  }
 }
 </script>
