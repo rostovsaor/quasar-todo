@@ -95,16 +95,20 @@ export default {
     return {
       newTask: '',
       tasks:[
+        // {
+        //   title: 'Get bananas',
+        //   done: false
+        // },
+        // {
+        //   title: 'Eat bananas',
+        //   done: true
+        // },
+        // {
+        //   title: 'Poo bananas',
+        //   done: false
+        // },
         {
-          title: 'Get bananas',
-          done: false
-        },
-        {
-          title: 'Eat bananas',
-          done: true
-        },
-        {
-          title: 'Poo bananas',
+          title: 'Add more TODO tasks, then delete all',
           done: false
         },
       ]
@@ -114,7 +118,7 @@ export default {
     deleteTask (index) {
       this.$q.dialog({
         title: 'Confirm',
-        message: 'Really delete?',
+        message: 'Really delete task "' + this.tasks[index].title + '"?',
       }).onOk(() => {
         this.tasks.splice(index, 1)
         this.$q.notify('Task deleted')
