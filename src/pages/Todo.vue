@@ -6,6 +6,28 @@
       style="width: 200px; height: 200px"
     > -->
     <!-- <h5>Todo</h5> -->
+    <div class="row q-pa-sm bg-primary">
+      <q-input
+        v-model="newTask"
+        @keyup.enter="addTask"
+        class="col"
+        square
+        filled
+        bg-color="white"
+        placeholder="Add task"
+        dense
+      >
+        <template v-slot:append>
+          <q-btn
+            @click="addTask"
+            round
+            dense
+            flat
+            icon="add"
+          />
+        </template>
+      </q-input>
+    </div>
  <q-list
     class="bg-white"
     separator
@@ -59,6 +81,7 @@ export default {
   name: 'Todo',
   data() {
     return {
+      newTask: '',
       tasks:[
         {
           title: 'Get bananas',
@@ -84,6 +107,14 @@ export default {
         this.tasks.splice(index, 1)
         this.$q.notify('Task deleted')
       })
+    },
+    addTask() {
+      this.tasks.push({
+        title: this.newTask,
+        done: false
+      })
+
+      this.newTask = ''
     }
   }
 }
